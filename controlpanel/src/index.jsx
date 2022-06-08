@@ -91,7 +91,7 @@ function Scene() {
 }
 
 const App = () => (
-  <Canvas shadowMap>
+  <VRCanvas shadowMap>
     <Physics
       gravity={[0, -2, 0]}
       iterations={20}
@@ -100,7 +100,7 @@ const App = () => (
       }}>
       <Scene />
     </Physics>
-  </Canvas>
+  </VRCanvas>
 )
 
 ReactDOM.render(<App />, document.getElementById('root'))
