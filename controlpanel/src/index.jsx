@@ -5,6 +5,7 @@ import { useThree, Canvas, useFrame } from '@react-three/fiber'
 import { Box, OrbitControls, Plane, Sphere, Sky, useMatcapTexture } from '@react-three/drei'
 import { usePlane, useBox, Physics, useSphere } from '@react-three/cannon'
 import { joints } from './joints'
+import GltfModel from "./gltf";
 import './styles.css'
 
 function Cube({ position, args = [0.06, 0.06, 0.06] }) {
@@ -63,7 +64,7 @@ const HandsColliders = ()=>
     </Fragment>
   ))
 
-function Scene() {
+function Scene({ modelPath, scale = 40, position = [0, 0, 0] }) {
   const [floorRef] = usePlane(() => ({
     args: [10, 10],
     rotation: [-Math.PI / 2, 0, 0],
@@ -83,6 +84,7 @@ function Scene() {
       {[...Array(7)].map((_, i) => (
         <Cube key={i} position={[0, 1.1 + 0.1 * i, -0.5]} />
       ))}
+      <GltfModel modelPath={modelPath} scale={scale} position={[0,1.0001,0]} />
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <spotLight position={[1, 8, 1]} angle={0.3} penumbra={1} intensity={1} castShadow />
@@ -98,7 +100,7 @@ const App = () => (
       defaultContactMaterial={{
         friction: 0.09
       }}>
-      <Scene />
+      <Scene scale="1" modelPath={"./images/scene.glb"} />
     </Physics>
   </VRCanvas>
 )
