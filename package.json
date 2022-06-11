@@ -1,5 +1,5 @@
 {
-  "name": "react-xr-hands-physics-demo",
+  "name": "controlpanel",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
@@ -19,7 +19,7 @@
     "three": "0.129.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run build && (cd mongodbserver && docker-compose up&) && (cd server && npm start)",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
